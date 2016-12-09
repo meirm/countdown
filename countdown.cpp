@@ -46,11 +46,11 @@ int main(int argc, char *argv[]){
 	signal(SIGINT, signalHandler);
 	if (argc != 2) usage(1);
 	if (! is_numeric(argv[1])) usage(2);
-	int top=atoi(argv[1]);
+	unsigned long top=atol(argv[1]);
 	int err=system("setterm -cursor off");
 	int bc = strlen(argv[1]);
-	while (top-- > 0){
-		cerr << top  << string(bc, ' ') << "\r";
+	while (top > 0){
+		cerr << top--  << string(bc, ' ') << "\r";
 		sleep(1);
 	}
 	err=system("setterm -cursor on");
