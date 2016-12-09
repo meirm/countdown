@@ -8,3 +8,7 @@ Usage:
 
 countdown <n>
 
+Compile:
+
+just run "make"
+
