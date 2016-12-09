@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include<string.h>
 #include <csignal>
+#define VERSION "0.1.2"
 using namespace std;
 
 void signalHandler( int signum ) {
@@ -37,7 +38,11 @@ bool is_numeric(char *string)
 }
 
 void usage(int ec){
-	cerr << "countdown <n>" << endl;
+	cerr << "countdown version " << VERSION  << endl;
+	cerr << "\tby Meir Michanie" << endl;
+	cerr << "Usage" << endl;
+	cerr << "\tcountdown <n>\t#any integer > 0" << endl;
+	cerr << "\tcountdown -h\t#this help" << endl;
 	exit(ec);
 }
 
@@ -45,6 +50,7 @@ int main(int argc, char *argv[]){
 	// register signal SIGINT and signal handler
 	signal(SIGINT, signalHandler);
 	if (argc != 2) usage(1);
+	if (string(argv[1]) == "-h") usage(0);
 	if (! is_numeric(argv[1])) usage(2);
 	unsigned long top=atol(argv[1]);
 	int err=system("setterm -cursor off");
